@@ -133,7 +133,7 @@ namespace IwSK_1
 
         public void transmitButton_Click(object sender, EventArgs args)
         {
-            MessageBox.Show("transmit button trial");
+            //MessageBox.Show("transmit button trial");
             port.Write(transmitedDataTextBox.Text);
             transmitedDataTextBox.Text = "";
         }
