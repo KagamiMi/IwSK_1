@@ -18,10 +18,11 @@ namespace IwSK_1
         private List<string> stopBits = new List<string>(new string[] { "1 bit", "2 bity" });
         private List<string> flowControl = new List<string>(new string[] {"Brak kontroli przepływu","Sprzętowa - handshake DTR/DSR",
         "Sprzętowa - handshake RTS/CTS", "Programowa - XON/XOFF"});
-        private List<string> terminator = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
+        private List<string> terminators = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
         "Terminator standardowy CR-LF", "Terminator własny 1-znakowy", "Terminator własny 2-znakowy"});
 
         SerialPort port;
+        Terminator terminator;
         public IwSK1()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace IwSK_1
             stopBitsComboBox.SelectedIndex = -1;
             flowControlComboBox.DataSource = flowControl;
             flowControlComboBox.SelectedIndex = -1;
-            terminatorComboBox.DataSource = terminator;
+            terminatorComboBox.DataSource = terminators;
             terminatorComboBox.SelectedIndex = -1;
             communicationPanel.Enabled = false;
             port = new SerialPort();
@@ -75,10 +76,7 @@ namespace IwSK_1
                         {
                             if (port.IsOpen)
                             {
-                                if (portComboBox.Text != port.PortName)
-                                {
-                                    port.Close();
-                                }
+                                port.Close();
                                 configure(speed);
                             }
                             else
@@ -165,6 +163,25 @@ namespace IwSK_1
                     break;
             }
 
+            switch (terminatorComboBox.SelectedIndex)
+            {
+                case (0):
+                    terminator = Terminator.None;
+                    break;
+                case (1):
+                    terminator = Terminator.CR;
+                    break;
+                case (2):
+                    terminator = Terminator.LF;
+                    break;
+                case (3):
+                    terminator = Terminator.CRLF;
+                    break;
+                default:
+                    terminator = Terminator.None;
+                    break;
+            }
+
             port = new SerialPort(portComboBox.SelectedValue.ToString(), speed, parity, dataBits, stopBits);
             port.Handshake = handshake;
             port.DataReceived += new SerialDataReceivedEventHandler(dataReceivedHandler);
@@ -175,7 +192,7 @@ namespace IwSK_1
         public void transmitButton_Click(object sender, EventArgs args)
         {
             //MessageBox.Show("transmit button trial");
-            port.Write(transmitedDataTextBox.Text);
+            port.Write(transmitedDataTextBox.Text + GetTerminatorSymbols(terminator));
             transmitedDataTextBox.Text = "";
         }
 
@@ -198,5 +215,25 @@ namespace IwSK_1
                 receivedDataTextBox.Text = receivedData;
             }
         }
+
+        public string GetTerminatorSymbols(Terminator terminator)
+        {
+            switch (terminator)
+            {
+                case Terminator.None:
+                    return "";
+                case Terminator.CRLF:
+                    return "\r\n";
+                case Terminator.LF:
+                    return "\n";
+                case Terminator.CR:
+                    return "\r";
+                default:
+                    return "";
+            }
+        }
     }
+
+    public enum Terminator { None, CRLF, LF, CR }
+
 }
