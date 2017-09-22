@@ -12,6 +12,7 @@ namespace IwSK_1
 {
     public partial class IwSK1 : Form
     {
+        delegate void SetTextCallback(string text);
         private List<string> dataField = new List<string>(new string[] {"7-bitowe","8-bitowe"});
         private List<string> control = new List<string>(new string[] {"E (parzystość)","O (nieparzystość)","N (brak)"});
         private List<string> stopBits = new List<string>(new string[] {"1 bit","2 bity"});
@@ -19,6 +20,8 @@ namespace IwSK_1
         "Sprzętowa - handshake RTS/CTS", "Programowa - XON/XOFF"});
         private List<string> terminator = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
         "Terminator standardowy CR-LF", "Terminator własny 1-znakowy", "Terminator własny 2-znakowy"});
+
+        SerialPort port;
         public IwSK1()
         {
             InitializeComponent();
@@ -35,6 +38,124 @@ namespace IwSK_1
             flowControlComboBox.SelectedIndex = -1;
             terminatorComboBox.DataSource = terminator;
             terminatorComboBox.SelectedIndex = -1;
+            communicationPanel.Enabled = false;
+            //pytanie ogolne: 
+            //co sie stanie gdy rozne parametry polaczenia damy na dwoch komputerach?
+        }
+
+        public void configureButton_Click(object sender, EventArgs args)
+        {
+            if ((portComboBox.SelectedIndex == -1) || (dataFieldComboBox.SelectedIndex == -1) || (controlComboBox.SelectedIndex == -1) ||
+                (stopBitsComboBox.SelectedIndex == -1) || (flowControlComboBox.SelectedIndex == -1) || (terminatorComboBox.SelectedIndex == -1))
+            {
+                MessageBox.Show("Nie wybrano wszystkich parametrów konfiguracji");
+            }
+            else
+            {
+                int speed;
+                try
+                {
+                    speed = Int32.Parse(speedTextBox.Text);
+                    if (speed < 150)
+                    {
+                        MessageBox.Show("Zbyt mała szybkość, minimalna szybkość to 150 bit/s");
+                    }
+                    else if (speed > 117760)
+                    {
+                        MessageBox.Show("Zbyt duża szybkość, maksymalna szybkość to 117 760 bit/s");
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Konfigurujemy");
+                        //zablokowanie comboboxow na czas wykonania konfiguracji
+                        //poki nie jest dobra konfiguracja, nie udostepniamy reszty okien  
+                        configure(speed);
+                    }
+                    
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Zła wartość szybkości");
+                }
+                
+            }
+        }
+
+        public void configure(int speed)
+        {
+            Parity parity;
+            switch (controlComboBox.SelectedValue.ToString())
+            {
+                case ("E (parzystość)"):
+                    parity = Parity.Even;
+                    break;
+                case ("O (nieparzystość)"):
+                    parity = Parity.Odd;
+                    break;
+                case ("N (brak)"):
+                    parity = Parity.None;
+                    break;
+                default:
+                    parity = Parity.None;
+                    break;
+            }
+            int dataBits;
+            switch(dataFieldComboBox.SelectedValue.ToString())
+            {
+                case ("7-bitowe"):
+                    dataBits = 7;
+                    break;
+                case ("8-bitowe"):
+                    dataBits = 8;
+                    break;
+                default:
+                    dataBits = 7;
+                    break;
+            }
+            StopBits stopBits;
+            switch (stopBitsComboBox.SelectedValue.ToString())
+            {
+                case ("1 bit"):
+                    stopBits = StopBits.One;
+                    break;
+                case ("2 bity"):
+                    stopBits = StopBits.Two;
+                    break;
+                default:
+                    stopBits = StopBits.One;
+                    break;
+            }
+            port = new SerialPort(portComboBox.SelectedValue.ToString(),speed,parity,dataBits,stopBits);
+            port.DataReceived += new SerialDataReceivedEventHandler(dataReceivedHandler);
+            port.Open();
+            communicationPanel.Enabled = true;
+        }
+
+        public void transmitButton_Click(object sender, EventArgs args)
+        {
+            MessageBox.Show("transmit button trial");
+            port.Write(transmitedDataTextBox.Text);
+            transmitedDataTextBox.Text = "";
+        }
+
+        private void setText(string text)
+        {
+            receivedDataTextBox.Text = text;
+        }
+
+        private void dataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort senderPort = (SerialPort)sender;
+            string receivedData = senderPort.ReadExisting();
+            if (this.receivedDataTextBox.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(setText);
+                this.Invoke(d, receivedData);
+            }
+            else
+            {
+                receivedDataTextBox.Text = receivedData;
+            }
         }
     }
 }

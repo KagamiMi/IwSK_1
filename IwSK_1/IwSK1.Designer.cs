@@ -31,9 +31,10 @@
             this.transmitedDataTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1receivedDataTextBox = new System.Windows.Forms.TextBox();
+            this.receivedDataTextBox = new System.Windows.Forms.TextBox();
             this.transmitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.configureButton = new System.Windows.Forms.Button();
             this.terminatorComboBox = new System.Windows.Forms.ComboBox();
             this.flowControlComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -54,14 +55,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.portComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.communicationPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.communicationPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // transmitedDataTextBox
             // 
-            this.transmitedDataTextBox.Location = new System.Drawing.Point(23, 316);
+            this.transmitedDataTextBox.Location = new System.Drawing.Point(56, 52);
             this.transmitedDataTextBox.Multiline = true;
             this.transmitedDataTextBox.Name = "transmitedDataTextBox";
             this.transmitedDataTextBox.Size = new System.Drawing.Size(262, 172);
@@ -70,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 293);
+            this.label1.Location = new System.Drawing.Point(56, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 17);
             this.label1.TabIndex = 1;
@@ -79,31 +82,35 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(310, 293);
+            this.label2.Location = new System.Drawing.Point(343, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Odbieranie: ";
             // 
-            // textBox1receivedDataTextBox
+            // receivedDataTextBox
             // 
-            this.textBox1receivedDataTextBox.Location = new System.Drawing.Point(310, 316);
-            this.textBox1receivedDataTextBox.Multiline = true;
-            this.textBox1receivedDataTextBox.Name = "textBox1receivedDataTextBox";
-            this.textBox1receivedDataTextBox.Size = new System.Drawing.Size(262, 172);
-            this.textBox1receivedDataTextBox.TabIndex = 2;
+            this.receivedDataTextBox.Location = new System.Drawing.Point(343, 52);
+            this.receivedDataTextBox.Multiline = true;
+            this.receivedDataTextBox.Name = "receivedDataTextBox";
+            this.receivedDataTextBox.Size = new System.Drawing.Size(262, 172);
+            this.receivedDataTextBox.TabIndex = 2;
             // 
             // transmitButton
             // 
-            this.transmitButton.Location = new System.Drawing.Point(95, 494);
+            this.transmitButton.Location = new System.Drawing.Point(128, 230);
             this.transmitButton.Name = "transmitButton";
             this.transmitButton.Size = new System.Drawing.Size(110, 26);
             this.transmitButton.TabIndex = 4;
             this.transmitButton.Text = "Wyślij";
             this.transmitButton.UseVisualStyleBackColor = true;
+            this.transmitButton.Click += new System.EventHandler(this.transmitButton_Click);
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.configureButton);
             this.panel1.Controls.Add(this.terminatorComboBox);
             this.panel1.Controls.Add(this.flowControlComboBox);
             this.panel1.Controls.Add(this.label13);
@@ -114,8 +121,18 @@
             this.panel1.Controls.Add(this.portComboBox);
             this.panel1.Location = new System.Drawing.Point(12, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(646, 223);
+            this.panel1.Size = new System.Drawing.Size(646, 253);
             this.panel1.TabIndex = 5;
+            // 
+            // configureButton
+            // 
+            this.configureButton.Location = new System.Drawing.Point(247, 216);
+            this.configureButton.Name = "configureButton";
+            this.configureButton.Size = new System.Drawing.Size(154, 26);
+            this.configureButton.TabIndex = 8;
+            this.configureButton.Text = "Konfiguruj";
+            this.configureButton.UseVisualStyleBackColor = true;
+            this.configureButton.Click += new System.EventHandler(this.configureButton_Click);
             // 
             // terminatorComboBox
             // 
@@ -164,6 +181,7 @@
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.speedTextBox);
             this.panel2.Controls.Add(this.panel3);
@@ -302,18 +320,26 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Konfiguracja:";
             // 
+            // communicationPanel
+            // 
+            this.communicationPanel.Controls.Add(this.transmitButton);
+            this.communicationPanel.Controls.Add(this.label2);
+            this.communicationPanel.Controls.Add(this.receivedDataTextBox);
+            this.communicationPanel.Controls.Add(this.label1);
+            this.communicationPanel.Controls.Add(this.transmitedDataTextBox);
+            this.communicationPanel.Location = new System.Drawing.Point(12, 306);
+            this.communicationPanel.Name = "communicationPanel";
+            this.communicationPanel.Size = new System.Drawing.Size(645, 264);
+            this.communicationPanel.TabIndex = 7;
+            // 
             // IwSK1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 533);
+            this.ClientSize = new System.Drawing.Size(670, 601);
+            this.Controls.Add(this.communicationPanel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.transmitButton);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1receivedDataTextBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.transmitedDataTextBox);
             this.Name = "IwSK1";
             this.Text = "IwSK1";
             this.panel1.ResumeLayout(false);
@@ -322,6 +348,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.communicationPanel.ResumeLayout(false);
+            this.communicationPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,7 +360,7 @@
         private System.Windows.Forms.TextBox transmitedDataTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1receivedDataTextBox;
+        private System.Windows.Forms.TextBox receivedDataTextBox;
         private System.Windows.Forms.Button transmitButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
@@ -355,6 +383,8 @@
         private System.Windows.Forms.ComboBox terminatorComboBox;
         private System.Windows.Forms.ComboBox flowControlComboBox;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button configureButton;
+        private System.Windows.Forms.Panel communicationPanel;
     }
 }
 
