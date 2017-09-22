@@ -90,6 +90,7 @@
             // 
             // receivedDataTextBox
             // 
+            this.receivedDataTextBox.Enabled = false;
             this.receivedDataTextBox.Location = new System.Drawing.Point(343, 52);
             this.receivedDataTextBox.Multiline = true;
             this.receivedDataTextBox.Name = "receivedDataTextBox";

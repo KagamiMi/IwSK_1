@@ -73,7 +73,7 @@ namespace IwSK_1
                     }
                     
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     MessageBox.Show("Zła wartość szybkości");
                 }
