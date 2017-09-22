@@ -13,9 +13,9 @@ namespace IwSK_1
     public partial class IwSK1 : Form
     {
         delegate void SetTextCallback(string text);
-        private List<string> dataField = new List<string>(new string[] {"7-bitowe","8-bitowe"});
-        private List<string> control = new List<string>(new string[] {"E (parzystość)","O (nieparzystość)","N (brak)"});
-        private List<string> stopBits = new List<string>(new string[] {"1 bit","2 bity"});
+        private List<string> dataField = new List<string>(new string[] { "7-bitowe", "8-bitowe" });
+        private List<string> control = new List<string>(new string[] { "E (parzystość)", "O (nieparzystość)", "N (brak)" });
+        private List<string> stopBits = new List<string>(new string[] { "1 bit", "2 bity" });
         private List<string> flowControl = new List<string>(new string[] {"Brak kontroli przepływu","Sprzętowa - handshake DTR/DSR",
         "Sprzętowa - handshake RTS/CTS", "Programowa - XON/XOFF"});
         private List<string> terminator = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
@@ -39,6 +39,7 @@ namespace IwSK_1
             terminatorComboBox.DataSource = terminator;
             terminatorComboBox.SelectedIndex = -1;
             communicationPanel.Enabled = false;
+            port = new SerialPort();
             //pytanie ogolne: 
             //co sie stanie gdy rozne parametry polaczenia damy na dwoch komputerach?
         }
@@ -68,16 +69,35 @@ namespace IwSK_1
                     {
                         //MessageBox.Show("Konfigurujemy");
                         //zablokowanie comboboxow na czas wykonania konfiguracji
-                        //poki nie jest dobra konfiguracja, nie udostepniamy reszty okien  
-                        configure(speed);
+                        //poki nie jest dobra konfiguracja, nie udostepniamy reszty okien
+                        SerialPort portToCheck = new SerialPort(portComboBox.Text);
+                        if (!portToCheck.IsOpen)
+                        {
+                            if (port.IsOpen)
+                            {
+                                if (portComboBox.Text != port.PortName)
+                                {
+                                    port.Close();
+                                }
+                                configure(speed);
+                            }
+                            else
+                            {
+                                configure(speed);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Port nie może być otworzony", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    
+
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Zła wartość szybkości");
+                    MessageBox.Show(e.ToString() + "  Zła wartość szybkości");
                 }
-                
+
             }
         }
 
@@ -100,7 +120,7 @@ namespace IwSK_1
                     break;
             }
             int dataBits;
-            switch(dataFieldComboBox.SelectedValue.ToString())
+            switch (dataFieldComboBox.SelectedValue.ToString())
             {
                 case ("7-bitowe"):
                     dataBits = 7;
@@ -125,7 +145,28 @@ namespace IwSK_1
                     stopBits = StopBits.One;
                     break;
             }
-            port = new SerialPort(portComboBox.SelectedValue.ToString(),speed,parity,dataBits,stopBits);
+            Handshake handshake;
+            switch (flowControlComboBox.SelectedIndex)
+            {
+                case (0):
+                    handshake = Handshake.None;
+                    break;
+                case (1):
+                    handshake = Handshake.RequestToSendXOnXOff;
+                    break;
+                case (2):
+                    handshake = Handshake.RequestToSend;
+                    break;
+                case (3):
+                    handshake = Handshake.XOnXOff;
+                    break;
+                default:
+                    handshake = Handshake.None;
+                    break;
+            }
+
+            port = new SerialPort(portComboBox.SelectedValue.ToString(), speed, parity, dataBits, stopBits);
+            port.Handshake = handshake;
             port.DataReceived += new SerialDataReceivedEventHandler(dataReceivedHandler);
             port.Open();
             communicationPanel.Enabled = true;
