@@ -56,6 +56,8 @@
             this.portComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.communicationPanel = new System.Windows.Forms.Panel();
+            this.pingButton = new System.Windows.Forms.Button();
+            this.pingPongTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,44 +66,49 @@
             // 
             // transmitedDataTextBox
             // 
-            this.transmitedDataTextBox.Location = new System.Drawing.Point(56, 52);
+            this.transmitedDataTextBox.Location = new System.Drawing.Point(7, 42);
+            this.transmitedDataTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.transmitedDataTextBox.Multiline = true;
             this.transmitedDataTextBox.Name = "transmitedDataTextBox";
-            this.transmitedDataTextBox.Size = new System.Drawing.Size(262, 172);
+            this.transmitedDataTextBox.Size = new System.Drawing.Size(234, 140);
             this.transmitedDataTextBox.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 29);
+            this.label1.Location = new System.Drawing.Point(42, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Nadawanie: ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(343, 29);
+            this.label2.Location = new System.Drawing.Point(257, 24);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 17);
+            this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Odbieranie: ";
             // 
             // receivedDataTextBox
             // 
             this.receivedDataTextBox.Enabled = false;
-            this.receivedDataTextBox.Location = new System.Drawing.Point(343, 52);
+            this.receivedDataTextBox.Location = new System.Drawing.Point(282, 42);
+            this.receivedDataTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.receivedDataTextBox.Multiline = true;
             this.receivedDataTextBox.Name = "receivedDataTextBox";
-            this.receivedDataTextBox.Size = new System.Drawing.Size(262, 172);
+            this.receivedDataTextBox.Size = new System.Drawing.Size(198, 140);
             this.receivedDataTextBox.TabIndex = 2;
             // 
             // transmitButton
             // 
-            this.transmitButton.Location = new System.Drawing.Point(128, 230);
+            this.transmitButton.Location = new System.Drawing.Point(8, 186);
+            this.transmitButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.transmitButton.Name = "transmitButton";
-            this.transmitButton.Size = new System.Drawing.Size(110, 26);
+            this.transmitButton.Size = new System.Drawing.Size(82, 21);
             this.transmitButton.TabIndex = 4;
             this.transmitButton.Text = "Wyślij";
             this.transmitButton.UseVisualStyleBackColor = true;
@@ -120,16 +127,18 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.portComboBox);
-            this.panel1.Location = new System.Drawing.Point(12, 32);
+            this.panel1.Location = new System.Drawing.Point(9, 26);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(646, 253);
+            this.panel1.Size = new System.Drawing.Size(486, 206);
             this.panel1.TabIndex = 5;
             // 
             // configureButton
             // 
-            this.configureButton.Location = new System.Drawing.Point(247, 216);
+            this.configureButton.Location = new System.Drawing.Point(185, 176);
+            this.configureButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.configureButton.Name = "configureButton";
-            this.configureButton.Size = new System.Drawing.Size(154, 26);
+            this.configureButton.Size = new System.Drawing.Size(116, 21);
             this.configureButton.TabIndex = 8;
             this.configureButton.Text = "Konfiguruj";
             this.configureButton.UseVisualStyleBackColor = true;
@@ -139,44 +148,49 @@
             // 
             this.terminatorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.terminatorComboBox.FormattingEnabled = true;
-            this.terminatorComboBox.Location = new System.Drawing.Point(136, 86);
+            this.terminatorComboBox.Location = new System.Drawing.Point(102, 70);
+            this.terminatorComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.terminatorComboBox.Name = "terminatorComboBox";
-            this.terminatorComboBox.Size = new System.Drawing.Size(222, 24);
+            this.terminatorComboBox.Size = new System.Drawing.Size(168, 21);
             this.terminatorComboBox.TabIndex = 7;
             // 
             // flowControlComboBox
             // 
             this.flowControlComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.flowControlComboBox.FormattingEnabled = true;
-            this.flowControlComboBox.Location = new System.Drawing.Point(136, 56);
+            this.flowControlComboBox.Location = new System.Drawing.Point(102, 46);
+            this.flowControlComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowControlComboBox.Name = "flowControlComboBox";
-            this.flowControlComboBox.Size = new System.Drawing.Size(222, 24);
+            this.flowControlComboBox.Size = new System.Drawing.Size(168, 21);
             this.flowControlComboBox.TabIndex = 6;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(53, 89);
+            this.label13.Location = new System.Drawing.Point(40, 72);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 17);
+            this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 5;
             this.label13.Text = "Terminator";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(2, 59);
+            this.label12.Location = new System.Drawing.Point(2, 48);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(128, 17);
+            this.label12.Size = new System.Drawing.Size(98, 13);
             this.label12.TabIndex = 4;
             this.label12.Text = "Kontrola przepływu";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(374, 9);
+            this.label5.Location = new System.Drawing.Point(280, 7);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 17);
+            this.label5.Size = new System.Drawing.Size(117, 13);
             this.label5.TabIndex = 3;
             this.label5.Text = "Parametry transmisyjne:";
             // 
@@ -188,25 +202,28 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(374, 29);
+            this.panel2.Location = new System.Drawing.Point(280, 24);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(249, 180);
+            this.panel2.Size = new System.Drawing.Size(187, 147);
             this.panel2.TabIndex = 2;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(167, 16);
+            this.label11.Location = new System.Drawing.Point(125, 13);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 17);
+            this.label11.Size = new System.Drawing.Size(28, 13);
             this.label11.TabIndex = 4;
             this.label11.Text = "bit/s";
             // 
             // speedTextBox
             // 
-            this.speedTextBox.Location = new System.Drawing.Point(87, 13);
+            this.speedTextBox.Location = new System.Drawing.Point(65, 11);
+            this.speedTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.speedTextBox.Name = "speedTextBox";
-            this.speedTextBox.Size = new System.Drawing.Size(73, 22);
+            this.speedTextBox.Size = new System.Drawing.Size(56, 20);
             this.speedTextBox.TabIndex = 3;
             // 
             // panel3
@@ -217,89 +234,99 @@
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Location = new System.Drawing.Point(11, 63);
+            this.panel3.Location = new System.Drawing.Point(8, 51);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(224, 106);
+            this.panel3.Size = new System.Drawing.Size(168, 86);
             this.panel3.TabIndex = 2;
             // 
             // stopBitsComboBox
             // 
             this.stopBitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stopBitsComboBox.FormattingEnabled = true;
-            this.stopBitsComboBox.Location = new System.Drawing.Point(105, 66);
+            this.stopBitsComboBox.Location = new System.Drawing.Point(79, 54);
+            this.stopBitsComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.stopBitsComboBox.Name = "stopBitsComboBox";
-            this.stopBitsComboBox.Size = new System.Drawing.Size(116, 24);
+            this.stopBitsComboBox.Size = new System.Drawing.Size(88, 21);
             this.stopBitsComboBox.TabIndex = 8;
             // 
             // controlComboBox
             // 
             this.controlComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.controlComboBox.FormattingEnabled = true;
-            this.controlComboBox.Location = new System.Drawing.Point(105, 38);
+            this.controlComboBox.Location = new System.Drawing.Point(79, 31);
+            this.controlComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.controlComboBox.Name = "controlComboBox";
-            this.controlComboBox.Size = new System.Drawing.Size(116, 24);
+            this.controlComboBox.Size = new System.Drawing.Size(88, 21);
             this.controlComboBox.TabIndex = 7;
             // 
             // dataFieldComboBox
             // 
             this.dataFieldComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dataFieldComboBox.FormattingEnabled = true;
-            this.dataFieldComboBox.Location = new System.Drawing.Point(105, 8);
+            this.dataFieldComboBox.Location = new System.Drawing.Point(79, 6);
+            this.dataFieldComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataFieldComboBox.Name = "dataFieldComboBox";
-            this.dataFieldComboBox.Size = new System.Drawing.Size(116, 24);
+            this.dataFieldComboBox.Size = new System.Drawing.Size(88, 21);
             this.dataFieldComboBox.TabIndex = 6;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 37);
+            this.label9.Location = new System.Drawing.Point(28, 30);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 17);
+            this.label9.Size = new System.Drawing.Size(46, 13);
             this.label9.TabIndex = 4;
             this.label9.Text = "Kontrola";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 11);
+            this.label8.Location = new System.Drawing.Point(10, 9);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 17);
+            this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 2;
             this.label8.Text = "Pole danych";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(26, 66);
+            this.label10.Location = new System.Drawing.Point(20, 54);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 17);
+            this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 5;
             this.label10.Text = "Bity stopu";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 14);
+            this.label6.Location = new System.Drawing.Point(9, 11);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
+            this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "Szybkość";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 44);
+            this.label7.Location = new System.Drawing.Point(9, 36);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 17);
+            this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 1;
             this.label7.Text = "Format znaku:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(96, 29);
+            this.label4.Location = new System.Drawing.Point(72, 24);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 17);
+            this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Port";
             // 
@@ -307,40 +334,64 @@
             // 
             this.portComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portComboBox.FormattingEnabled = true;
-            this.portComboBox.Location = new System.Drawing.Point(136, 26);
+            this.portComboBox.Location = new System.Drawing.Point(102, 21);
+            this.portComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.portComboBox.Name = "portComboBox";
-            this.portComboBox.Size = new System.Drawing.Size(222, 24);
+            this.portComboBox.Size = new System.Drawing.Size(168, 21);
             this.portComboBox.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 9);
+            this.label3.Location = new System.Drawing.Point(14, 7);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 17);
+            this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Konfiguracja:";
             // 
             // communicationPanel
             // 
+            this.communicationPanel.Controls.Add(this.pingPongTextBox);
+            this.communicationPanel.Controls.Add(this.pingButton);
             this.communicationPanel.Controls.Add(this.transmitButton);
             this.communicationPanel.Controls.Add(this.label2);
             this.communicationPanel.Controls.Add(this.receivedDataTextBox);
             this.communicationPanel.Controls.Add(this.label1);
             this.communicationPanel.Controls.Add(this.transmitedDataTextBox);
-            this.communicationPanel.Location = new System.Drawing.Point(12, 306);
+            this.communicationPanel.Location = new System.Drawing.Point(9, 249);
+            this.communicationPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.communicationPanel.Name = "communicationPanel";
-            this.communicationPanel.Size = new System.Drawing.Size(645, 264);
+            this.communicationPanel.Size = new System.Drawing.Size(484, 214);
             this.communicationPanel.TabIndex = 7;
+            // 
+            // pingButton
+            // 
+            this.pingButton.Location = new System.Drawing.Point(104, 186);
+            this.pingButton.Margin = new System.Windows.Forms.Padding(2);
+            this.pingButton.Name = "pingButton";
+            this.pingButton.Size = new System.Drawing.Size(82, 21);
+            this.pingButton.TabIndex = 5;
+            this.pingButton.Text = "Ping";
+            this.pingButton.UseVisualStyleBackColor = true;
+            // 
+            // pingPongTextBox
+            // 
+            this.pingPongTextBox.Location = new System.Drawing.Point(191, 186);
+            this.pingPongTextBox.Name = "pingPongTextBox";
+            this.pingPongTextBox.ReadOnly = true;
+            this.pingPongTextBox.Size = new System.Drawing.Size(49, 20);
+            this.pingPongTextBox.TabIndex = 6;
             // 
             // IwSK1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 601);
+            this.ClientSize = new System.Drawing.Size(502, 488);
             this.Controls.Add(this.communicationPanel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "IwSK1";
             this.Text = "IwSK1";
             this.panel1.ResumeLayout(false);
@@ -386,6 +437,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button configureButton;
         private System.Windows.Forms.Panel communicationPanel;
+        private System.Windows.Forms.TextBox pingPongTextBox;
+        private System.Windows.Forms.Button pingButton;
     }
 }
 
