@@ -207,6 +207,10 @@ namespace IwSK_1
         {
             SerialPort senderPort = (SerialPort)sender;
             string receivedData = senderPort.ReadExisting();
+            if(receivedData == "#-!PING!-#")
+            {
+                SendPong();
+            }
             if (this.receivedDataTextBox.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(setText);
@@ -240,6 +244,11 @@ namespace IwSK_1
             const string PING = "#-!PING!-#";
             pingPongTimer.Start();
             port.Write(PING + GetTerminatorSymbols(terminator));
+        }
+        private void SendPong()
+        {
+            const string PONG = "#-!PONG!-#";
+            port.Write(PONG + GetTerminatorSymbols(terminator));
         }
     }
 
