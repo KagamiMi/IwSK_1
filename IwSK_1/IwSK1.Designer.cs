@@ -374,6 +374,7 @@
             this.pingButton.TabIndex = 5;
             this.pingButton.Text = "Ping";
             this.pingButton.UseVisualStyleBackColor = true;
+            this.pingButton.Click += new System.EventHandler(this.pingButton_Click);
             // 
             // pingPongTextBox
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Diagnostics;
 
 namespace IwSK_1
 {
@@ -20,6 +21,7 @@ namespace IwSK_1
         "Sprzętowa - handshake RTS/CTS", "Programowa - XON/XOFF"});
         private List<string> terminators = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
         "Terminator standardowy CR-LF", "Terminator własny 1-znakowy", "Terminator własny 2-znakowy"});
+        Stopwatch pingPongTimer = new Stopwatch();
 
         SerialPort port;
         Terminator terminator;
@@ -231,6 +233,13 @@ namespace IwSK_1
                 default:
                     return "";
             }
+        }
+
+        private void pingButton_Click(object sender, EventArgs e)
+        {
+            const string PING = "#-!PING!-#";
+            pingPongTimer.Start();
+            port.Write(PING + GetTerminatorSymbols(terminator));
         }
     }
 
