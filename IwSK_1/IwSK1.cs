@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Diagnostics;
 
 namespace IwSK_1
 {
@@ -20,6 +21,9 @@ namespace IwSK_1
         "Sprzętowa - handshake RTS/CTS", "Programowa - XON/XOFF"});
         private List<string> terminators = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
         "Terminator standardowy CR-LF", "Terminator własny 1-znakowy", "Terminator własny 2-znakowy"});
+        Stopwatch pingPongTimer = new Stopwatch();
+        string ping { get { return "x#-!PING!-#x" + GetTerminatorSymbols(terminator); } }
+        string pong { get { return "x#-!PONG!-#x" + GetTerminatorSymbols(terminator); } }
 
         SerialPort port;
         Terminator terminator;
@@ -200,12 +204,24 @@ namespace IwSK_1
         {
             receivedDataTextBox.Text = text;
         }
+        private void setPingPongTime(string time)
+        {
+            pingPongTextBox.Text = time;
+        }
 
         private void dataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort senderPort = (SerialPort)sender;
             string receivedData = senderPort.ReadExisting();
-            if (this.receivedDataTextBox.InvokeRequired)
+            if(receivedData == ping)
+            {
+                SendPong();
+            }
+            else if(receivedData == pong && pingPongTimer.IsRunning)
+            {
+                ConsumePong();
+            }
+            else if (this.receivedDataTextBox.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(setText);
                 this.Invoke(d, receivedData);
@@ -232,6 +248,52 @@ namespace IwSK_1
                     return "";
             }
         }
+
+        private void pingButton_Click(object sender, EventArgs e)
+        {
+            pingPongTimer.Start();
+            port.Write(ping + GetTerminatorSymbols(terminator));
+            pingButton.Enabled = false;
+        }
+        private void SendPong()
+        {
+            port.Write(pong + GetTerminatorSymbols(terminator));
+        }
+        private void ConsumePong()
+        {
+            double pingPongTime = pingPongTimer.Elapsed.TotalMilliseconds;
+            pingPongTimer.Stop();
+            pingPongTimer.Reset();
+            pingPongTime = Math.Round(pingPongTime, 2);
+            string formatedTime = pingPongTime.ToString() + " ms";
+            SetPingTextBoxText(formatedTime);
+            EnablePingButton();
+        }
+        private void EnablePingButton()
+        {
+            if (this.pingButton.InvokeRequired)
+            {
+                this.Invoke((Action)(() => pingButton.Enabled = true));
+            }
+            else
+            {
+                pingButton.Enabled = true;
+            }
+        }
+
+        private void SetPingTextBoxText(string formatedTime)
+        {
+            if (this.receivedDataTextBox.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(setPingPongTime);
+                this.Invoke(d, formatedTime);
+            }
+            else
+            {
+                receivedDataTextBox.Text = formatedTime;
+            }
+        }
+
     }
 
     public enum Terminator { None, CRLF, LF, CR }
