@@ -20,7 +20,7 @@ namespace IwSK_1
         private List<string> flowControl = new List<string>(new string[] {"Brak kontroli przepływu","Sprzętowa - handshake DTR/DSR",
         "Sprzętowa - handshake RTS/CTS", "Programowa - XON/XOFF"});
         private List<string> terminators = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
-        "Terminator standardowy CR-LF", "Terminator własny 1-znakowy", "Terminator własny 2-znakowy"});
+        "Terminator standardowy CR-LF"});
         Stopwatch pingPongTimer = new Stopwatch();
         string ping { get { return "x#-!PING!-#x" + GetTerminatorSymbols(terminator); } }
         string pong { get { return "x#-!PONG!-#x" + GetTerminatorSymbols(terminator); } }
@@ -76,7 +76,7 @@ namespace IwSK_1
                         //zablokowanie comboboxow na czas wykonania konfiguracji
                         //poki nie jest dobra konfiguracja, nie udostepniamy reszty okien
                         SerialPort portToCheck = new SerialPort(portComboBox.Text);
-                        if (!portToCheck.IsOpen)
+                        if (!portToCheck.IsOpen && !(portToCheck.PortName == port.PortName))
                         {
                             if (port.IsOpen)
                             {
@@ -97,7 +97,7 @@ namespace IwSK_1
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.ToString() + "  Zła wartość szybkości");
+                    MessageBox.Show(e.Message.ToString());
                 }
 
             }
@@ -202,7 +202,7 @@ namespace IwSK_1
 
         private void setText(string text)
         {
-            receivedDataTextBox.Text = text;
+            receivedDataTextBox.Text += text;
         }
         private void setPingPongTime(string time)
         {
@@ -228,7 +228,7 @@ namespace IwSK_1
             }
             else
             {
-                receivedDataTextBox.Text = receivedData;
+                receivedDataTextBox.Text += receivedData;
             }
         }
 
@@ -294,6 +294,10 @@ namespace IwSK_1
             }
         }
 
+        private void clearOutputButton_Click(object sender, EventArgs e)
+        {
+            this.receivedDataTextBox.Text = "";
+        }
     }
 
     public enum Terminator { None, CRLF, LF, CR }

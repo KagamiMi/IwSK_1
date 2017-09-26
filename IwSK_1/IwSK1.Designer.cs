@@ -56,8 +56,9 @@
             this.portComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.communicationPanel = new System.Windows.Forms.Panel();
-            this.pingButton = new System.Windows.Forms.Button();
             this.pingPongTextBox = new System.Windows.Forms.TextBox();
+            this.pingButton = new System.Windows.Forms.Button();
+            this.clearOutputButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -67,7 +68,7 @@
             // transmitedDataTextBox
             // 
             this.transmitedDataTextBox.Location = new System.Drawing.Point(7, 42);
-            this.transmitedDataTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.transmitedDataTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.transmitedDataTextBox.Multiline = true;
             this.transmitedDataTextBox.Name = "transmitedDataTextBox";
             this.transmitedDataTextBox.Size = new System.Drawing.Size(234, 140);
@@ -97,7 +98,7 @@
             // 
             this.receivedDataTextBox.Enabled = false;
             this.receivedDataTextBox.Location = new System.Drawing.Point(282, 42);
-            this.receivedDataTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.receivedDataTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.receivedDataTextBox.Multiline = true;
             this.receivedDataTextBox.Name = "receivedDataTextBox";
             this.receivedDataTextBox.Size = new System.Drawing.Size(198, 140);
@@ -106,7 +107,7 @@
             // transmitButton
             // 
             this.transmitButton.Location = new System.Drawing.Point(8, 186);
-            this.transmitButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.transmitButton.Margin = new System.Windows.Forms.Padding(2);
             this.transmitButton.Name = "transmitButton";
             this.transmitButton.Size = new System.Drawing.Size(82, 21);
             this.transmitButton.TabIndex = 4;
@@ -128,7 +129,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.portComboBox);
             this.panel1.Location = new System.Drawing.Point(9, 26);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(486, 206);
             this.panel1.TabIndex = 5;
@@ -136,7 +137,7 @@
             // configureButton
             // 
             this.configureButton.Location = new System.Drawing.Point(185, 176);
-            this.configureButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.configureButton.Margin = new System.Windows.Forms.Padding(2);
             this.configureButton.Name = "configureButton";
             this.configureButton.Size = new System.Drawing.Size(116, 21);
             this.configureButton.TabIndex = 8;
@@ -149,7 +150,7 @@
             this.terminatorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.terminatorComboBox.FormattingEnabled = true;
             this.terminatorComboBox.Location = new System.Drawing.Point(102, 70);
-            this.terminatorComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.terminatorComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.terminatorComboBox.Name = "terminatorComboBox";
             this.terminatorComboBox.Size = new System.Drawing.Size(168, 21);
             this.terminatorComboBox.TabIndex = 7;
@@ -159,7 +160,7 @@
             this.flowControlComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.flowControlComboBox.FormattingEnabled = true;
             this.flowControlComboBox.Location = new System.Drawing.Point(102, 46);
-            this.flowControlComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowControlComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.flowControlComboBox.Name = "flowControlComboBox";
             this.flowControlComboBox.Size = new System.Drawing.Size(168, 21);
             this.flowControlComboBox.TabIndex = 6;
@@ -203,7 +204,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(280, 24);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(187, 147);
             this.panel2.TabIndex = 2;
@@ -221,7 +222,7 @@
             // speedTextBox
             // 
             this.speedTextBox.Location = new System.Drawing.Point(65, 11);
-            this.speedTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.speedTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.speedTextBox.Name = "speedTextBox";
             this.speedTextBox.Size = new System.Drawing.Size(56, 20);
             this.speedTextBox.TabIndex = 3;
@@ -235,7 +236,7 @@
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Location = new System.Drawing.Point(8, 51);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(168, 86);
             this.panel3.TabIndex = 2;
@@ -245,7 +246,7 @@
             this.stopBitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stopBitsComboBox.FormattingEnabled = true;
             this.stopBitsComboBox.Location = new System.Drawing.Point(79, 54);
-            this.stopBitsComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stopBitsComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.stopBitsComboBox.Name = "stopBitsComboBox";
             this.stopBitsComboBox.Size = new System.Drawing.Size(88, 21);
             this.stopBitsComboBox.TabIndex = 8;
@@ -255,7 +256,7 @@
             this.controlComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.controlComboBox.FormattingEnabled = true;
             this.controlComboBox.Location = new System.Drawing.Point(79, 31);
-            this.controlComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.controlComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.controlComboBox.Name = "controlComboBox";
             this.controlComboBox.Size = new System.Drawing.Size(88, 21);
             this.controlComboBox.TabIndex = 7;
@@ -265,7 +266,7 @@
             this.dataFieldComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dataFieldComboBox.FormattingEnabled = true;
             this.dataFieldComboBox.Location = new System.Drawing.Point(79, 6);
-            this.dataFieldComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataFieldComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.dataFieldComboBox.Name = "dataFieldComboBox";
             this.dataFieldComboBox.Size = new System.Drawing.Size(88, 21);
             this.dataFieldComboBox.TabIndex = 6;
@@ -335,7 +336,7 @@
             this.portComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portComboBox.FormattingEnabled = true;
             this.portComboBox.Location = new System.Drawing.Point(102, 21);
-            this.portComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.portComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.portComboBox.Name = "portComboBox";
             this.portComboBox.Size = new System.Drawing.Size(168, 21);
             this.portComboBox.TabIndex = 0;
@@ -352,6 +353,7 @@
             // 
             // communicationPanel
             // 
+            this.communicationPanel.Controls.Add(this.clearOutputButton);
             this.communicationPanel.Controls.Add(this.pingPongTextBox);
             this.communicationPanel.Controls.Add(this.pingButton);
             this.communicationPanel.Controls.Add(this.transmitButton);
@@ -360,10 +362,18 @@
             this.communicationPanel.Controls.Add(this.label1);
             this.communicationPanel.Controls.Add(this.transmitedDataTextBox);
             this.communicationPanel.Location = new System.Drawing.Point(9, 249);
-            this.communicationPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.communicationPanel.Margin = new System.Windows.Forms.Padding(2);
             this.communicationPanel.Name = "communicationPanel";
             this.communicationPanel.Size = new System.Drawing.Size(484, 214);
             this.communicationPanel.TabIndex = 7;
+            // 
+            // pingPongTextBox
+            // 
+            this.pingPongTextBox.Location = new System.Drawing.Point(191, 186);
+            this.pingPongTextBox.Name = "pingPongTextBox";
+            this.pingPongTextBox.ReadOnly = true;
+            this.pingPongTextBox.Size = new System.Drawing.Size(49, 20);
+            this.pingPongTextBox.TabIndex = 6;
             // 
             // pingButton
             // 
@@ -376,13 +386,16 @@
             this.pingButton.UseVisualStyleBackColor = true;
             this.pingButton.Click += new System.EventHandler(this.pingButton_Click);
             // 
-            // pingPongTextBox
+            // clearOutputButton
             // 
-            this.pingPongTextBox.Location = new System.Drawing.Point(191, 186);
-            this.pingPongTextBox.Name = "pingPongTextBox";
-            this.pingPongTextBox.ReadOnly = true;
-            this.pingPongTextBox.Size = new System.Drawing.Size(49, 20);
-            this.pingPongTextBox.TabIndex = 6;
+            this.clearOutputButton.Location = new System.Drawing.Point(282, 186);
+            this.clearOutputButton.Margin = new System.Windows.Forms.Padding(2);
+            this.clearOutputButton.Name = "clearOutputButton";
+            this.clearOutputButton.Size = new System.Drawing.Size(82, 21);
+            this.clearOutputButton.TabIndex = 7;
+            this.clearOutputButton.Text = "Wyczyść";
+            this.clearOutputButton.UseVisualStyleBackColor = true;
+            this.clearOutputButton.Click += new System.EventHandler(this.clearOutputButton_Click);
             // 
             // IwSK1
             // 
@@ -392,7 +405,7 @@
             this.Controls.Add(this.communicationPanel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "IwSK1";
             this.Text = "IwSK1";
             this.panel1.ResumeLayout(false);
@@ -440,6 +453,7 @@
         private System.Windows.Forms.Panel communicationPanel;
         private System.Windows.Forms.TextBox pingPongTextBox;
         private System.Windows.Forms.Button pingButton;
+        private System.Windows.Forms.Button clearOutputButton;
     }
 }
 
