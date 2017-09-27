@@ -22,8 +22,8 @@ namespace IwSK_1
         private List<string> terminators = new List<string>(new string[] {"Brak terminatora","Terminator standardowy CR","Terminator standardowy LF",
         "Terminator standardowy CR-LF"});
         Stopwatch pingPongTimer = new Stopwatch();
-        string ping { get { return "x#-!PING!-#x" + GetTerminatorSymbols(terminator); } }
-        string pong { get { return "x#-!PONG!-#x" + GetTerminatorSymbols(terminator); } }
+        string PING = "#";
+        string PONG = "$";
 
         SerialPort port;
         Terminator terminator;
@@ -213,11 +213,11 @@ namespace IwSK_1
         {
             SerialPort senderPort = (SerialPort)sender;
             string receivedData = senderPort.ReadExisting();
-            if(receivedData == ping)
+            if(receivedData.Trim() == PING)
             {
                 SendPong();
             }
-            else if(receivedData == pong && pingPongTimer.IsRunning)
+            else if(receivedData.Trim() == PONG && pingPongTimer.IsRunning)
             {
                 ConsumePong();
             }
@@ -252,12 +252,12 @@ namespace IwSK_1
         private void pingButton_Click(object sender, EventArgs e)
         {
             pingPongTimer.Start();
-            port.Write(ping + GetTerminatorSymbols(terminator));
+            port.Write(PING + GetTerminatorSymbols(terminator));
             pingButton.Enabled = false;
         }
         private void SendPong()
         {
-            port.Write(pong + GetTerminatorSymbols(terminator));
+            port.Write(PONG + GetTerminatorSymbols(terminator));
         }
         private void ConsumePong()
         {
