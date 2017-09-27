@@ -75,25 +75,12 @@ namespace IwSK_1
                         //MessageBox.Show("Konfigurujemy");
                         //zablokowanie comboboxow na czas wykonania konfiguracji
                         //poki nie jest dobra konfiguracja, nie udostepniamy reszty okien
-                        SerialPort portToCheck = new SerialPort(portComboBox.Text);
-                        if (!portToCheck.IsOpen && !(portToCheck.PortName == port.PortName))
+                        if (port != null)
                         {
-                            if (port.IsOpen)
-                            {
-                                port.Close();
-                                configure(speed);
-                            }
-                            else
-                            {
-                                configure(speed);
-                            }
+                            port.Close();
                         }
-                        else
-                        {
-                            MessageBox.Show("Port nie może być otworzony", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        configure(speed);
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -213,11 +200,11 @@ namespace IwSK_1
         {
             SerialPort senderPort = (SerialPort)sender;
             string receivedData = senderPort.ReadExisting();
-            if(receivedData.Trim() == PING)
+            if (receivedData.Trim() == PING)
             {
                 SendPong();
             }
-            else if(receivedData.Trim() == PONG && pingPongTimer.IsRunning)
+            else if (receivedData.Trim() == PONG && pingPongTimer.IsRunning)
             {
                 ConsumePong();
             }
