@@ -189,6 +189,7 @@ namespace IwSK_1
             port = new SerialPort(portComboBox.SelectedValue.ToString(), speed, parity, dataBits, stopBits);
             port.Handshake = handshake;
             port.DataReceived += new SerialDataReceivedEventHandler(dataReceivedHandler);
+            port.ErrorReceived += new SerialErrorReceivedEventHandler(errorRecivedHandler);
             port.Open();
             communicationPanel.Enabled = true;
         }
@@ -230,6 +231,10 @@ namespace IwSK_1
             {
                 receivedDataTextBox.Text += receivedData;
             }
+        }
+        private void errorRecivedHandler(object sender, SerialErrorReceivedEventArgs e)
+        {
+            MessageBox.Show(e.EventType.ToString());
         }
 
         public string GetTerminatorSymbols(Terminator terminator)
